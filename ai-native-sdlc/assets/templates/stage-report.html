@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{stage_title}} 마감 보고</title>
+  <style>
+    :root { color-scheme: light dark; font: 100%/1.55 system-ui, sans-serif; }
+    body { max-width: 52rem; margin: auto; padding: 1.5rem; overflow-wrap: anywhere; }
+    header, section { margin-block-end: 1.5rem; }
+    h1, h2 { line-height: 1.25; }
+    dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: .25rem 1rem; }
+    dt { font-weight: 600; }
+    dd { margin: 0; }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    th, td { text-align: start; vertical-align: top; padding: .5rem; border-block-end: 1px solid GrayText; }
+    caption { text-align: start; margin-block-end: .5rem; }
+    a { text-underline-offset: .2em; }
+    @media (max-width: 32rem) {
+      body { padding: 1rem; }
+      dl { grid-template-columns: 1fr; gap: 0; }
+      dd { margin-block-end: .5rem; }
+      th, td { padding: .35rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>{{stage_title}} 마감 보고</h1>
+      <p><strong>{{summary}}</strong></p>
+      <dl>
+        <dt>대상</dt><dd>{{scope}}</dd>
+        <dt>판정</dt><dd>{{status}}</dd>
+        <dt>근거 버전 또는 리비전</dt><dd>{{revision}}</dd>
+      </dl>
+    </header>
+
+    <section>
+      <h2>진행 흐름</h2>
+      <ol>
+        <li>{{prior_decision}}</li>
+        <li>{{confirmed_outcome}}</li>
+        <li>{{next_action}}</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>확인 결과와 근거</h2>
+      <table>
+        <caption>단계 종료 조건에 대한 확인 결과</caption>
+        <thead>
+          <tr><th scope="col">확인 항목</th><th scope="col">실제 결과</th><th scope="col">원본 근거</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>{{criterion}}</td><td>{{observed_result}}</td><td><a href="{{evidence_href}}">{{evidence_label}}</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>남은 위험과 차단</h2>
+      <p>{{risks_or_blockers}}</p>
+    </section>
+
+    <section>
+      <h2>다음 행동과 사용자 영향</h2>
+      <p>{{next_action_and_impact}}</p>
+    </section>
+  </main>
+</body>
+</html>
