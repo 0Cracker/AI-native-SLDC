@@ -1,0 +1,12 @@
+# 문서 변경 검증
+
+판정: 통과. 대상은 `F001-artifact-rules`의 스킬 문서와 템플릿 변경이다.
+
+| 검사 | 명령 또는 방법 | 결과 |
+|---|---|---|
+| 스킬 형식 | `python3 /mnt/c/Users/gogos/.codex/skills/.system/skill-creator/scripts/quick_validate.py ai-native-sdlc` | exit 0, Skill is valid! |
+| 패치 공백 오류 | `git diff --check` | exit 0, 오류 없음 |
+| 문서 연결 | Python으로 변경 문서 11개의 로컬 링크와 앵커 51개 확인 | exit 0, 오류 없음 |
+| 지침 일관성 | 필수 경로, 간소화 예시, 재개 지침과 템플릿을 대조 | 충돌 문구 정리, 템플릿 32줄에서 10줄, 표 5개에서 2개 |
+
+제품 코드, 최초 평가 기록과 전역 설치본은 수정하지 않는다. 새 에이전트로 수행하는 제품 개발 재시험은 이번 문서 수정 검증에 포함하지 않는다.
