@@ -29,7 +29,8 @@ specs/F001-short-slug/
 ├── verification.md
 ├── spike-report.md
 ├── release.md
-└── operations.md
+├── operations.md
+└── reports/
 ```
 
 | 경로 | 정본과 생성 시점 |
@@ -47,6 +48,7 @@ specs/F001-short-slug/
 | `verification.md` | G5 실행 증거와 판정, 06a 통합, 06b 인수 결과의 정본 |
 | `spike-report.md`, 공통 `decisions/ADR-*.md` | 실험 기록, 중요한 구조 결정 |
 | `release.md`, `operations.md` | 07 배포·복구, 08 운영 관측과 결정. 적용 시 작성 |
+| `reports/<stage>-<scope>-<round>.html` | 단계 마감 시점의 요약. 기존 경로를 우선하고 [보고 규칙](stage-report.md)을 따른다. |
 
 - 신규 변경은 위 구조를 기본으로 한다. 기존 변경의 정본과 ID는 재사용한다. 필요한 폴더와 문서만 만들고 이관은 먼저 확인한다.
 - 요구는 인수 판단 단위, 아키텍처는 경계·구조 결정 단위, 상세 설계는 동작·계약 단위로 나눈다. 03의 A~H와 확장 영역 이름은 `A001`·`D001` 같은 문서 ID와 구분한다.
