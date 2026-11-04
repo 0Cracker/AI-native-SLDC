@@ -5,5 +5,5 @@
 - 시작점, 목표, 화면·조작, 접근 권한을 인수 조건과 연결한다.
 - 정상·로딩·빈 상태·입력 오류·권한 거부의 표시와 다음 행동을 정한다.
 - 흐름도 또는 와이어프레임에 키보드·포커스·반응형 조건과 복구를 연결한다.
-- **산출물** `designs/D001-*.md`, [작성 틀](../../assets/templates/ux-design.md), [그림 예시](../../assets/templates/user-flow.mmd). [그림 규칙](../diagram-policy.md)을 따른다.
+- **산출물** `designs/D001-*.md`, [작성 틀](../../assets/templates/03-detailed-design/ux-design.md), [그림 예시](../../assets/templates/03-detailed-design/diagrams/user-flow.mmd). [그림 규칙](../diagram-policy.md)을 따른다.
 - **완료** 주요 사용자 경로와 실패 복구, 화면 상태와 접근성 검사 근거가 연결된다.

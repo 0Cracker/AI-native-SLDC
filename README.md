@@ -17,4 +17,5 @@
 - [스킬 진입점](ai-native-sdlc/SKILL.md)
 - [단계별 플레이북과 종료 조건](ai-native-sdlc/references/lifecycle.md)
 - [프로젝트 산출물 구조](ai-native-sdlc/references/artifact-layout.md)
+- [단계별 템플릿](ai-native-sdlc/assets/templates/)
 - [단계 마감 HTML 보고 규칙](ai-native-sdlc/references/stage-report.md)

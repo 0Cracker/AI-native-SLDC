@@ -14,6 +14,6 @@
 | 기술 제약 출발 | 제약과 타당성 확인 후 01에서 요구 확정 |
 | Spike, PoC | 가설, 시간 제한, 관측과 판정. 제품 반영은 새 00, 종료 시 결과 보관 |
 
-- **기록** [요청 정의](../../assets/templates/intake.md)를 `intake.md`에 저장하고 [관계 지도](../../assets/templates/index.md)를 시작한다. 실험은 [기술 검증 기록](../../assets/templates/spike-report.md), 이행·복구는 [배포 기록](../../assets/templates/release.md).
+- **기록** [요청 정의](../../assets/templates/00-intake/intake.md)를 `intake.md`에 저장하고 [관계 지도](../../assets/templates/shared/index.md)를 시작한다. 실험은 [기술 검증 기록](../../assets/templates/00-intake/spike-report.md), 이행·복구는 [배포 기록](../../assets/templates/07-release/release.md).
 - **전환** 제품 변경은 [G0](../lifecycle.md#단계별-종료-조건) 후 01로 간다. Spike·PoC는 실험 기록과 반영 판단을 남겨 종료한다. 제품에 반영하기로 하면 실험 근거를 연결해 새 00으로 들어간다.
 - Hotfix에서 이미 권한이 부여된 중단·롤백 등 안정화가 필요하면 실행 범위, 권한, 버전·시각, 결과를 배포·운영 기록에 남긴다. 안정화 후 신규 수정은 00부터 필요한 판정을 거친다.

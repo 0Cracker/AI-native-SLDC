@@ -5,5 +5,5 @@
 - 환경 의존성, 노출 범위, 이행 순서와 버전 호환 기간을 확인한다.
 - 실패 지표·중단 기준, 복구 경로와 복구 후 데이터 검사를 정한다.
 - 토폴로지 또는 이행·복구 흐름을 연결하고 07 Ready 근거를 준비한다.
-- **산출물** `designs/D001-*.md`, [작성 틀](../../assets/templates/operability-design.md), [그림 예시](../../assets/templates/deployment-recovery.mmd). [그림 규칙](../diagram-policy.md)을 따른다.
+- **산출물** `designs/D001-*.md`, [작성 틀](../../assets/templates/03-detailed-design/operability-design.md), [그림 예시](../../assets/templates/03-detailed-design/diagrams/deployment-recovery.mmd). [그림 규칙](../diagram-policy.md)을 따른다.
 - **완료** 실패 탐지, 중단, 복구와 정상 판정을 검증할 수 있다.

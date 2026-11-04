@@ -5,5 +5,5 @@
 - 현행 용어, 식별자, 원본과 데이터 소유자를 확인한다.
 - 관계·카디널리티·제약, 단위·시간대, 변환·결측·중복 규칙을 정한다.
 - 이행 시 버전 공존, 백필, 대조·복구를 설계하고 03-G에 연결한다.
-- **산출물** `designs/D001-*.md`, [작성 틀](../../assets/templates/domain-data-design.md), [그림 예시](../../assets/templates/data-relationships.mmd). [그림 규칙](../diagram-policy.md)을 따른다.
+- **산출물** `designs/D001-*.md`, [작성 틀](../../assets/templates/03-detailed-design/domain-data-design.md), [그림 예시](../../assets/templates/03-detailed-design/diagrams/data-relationships.mmd). [그림 규칙](../diagram-policy.md)을 따른다.
 - **완료** 그림에 관계와 소유권을 표시하고 규칙·제약·변환·이행 검사를 연결한다.

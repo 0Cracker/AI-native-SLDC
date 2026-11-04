@@ -23,4 +23,4 @@
 - 해당 A·D 문서에 상대 경로, 영역·Increment, 작성·갱신·참조 상태, 적용 범위, 계약·검증 ID를 연결한다. 필요하면 현행과 변경안을 구분한다.
 - 가능한 경우 파싱·렌더링을 확인한다. 미확인은 기록하고, 그림 내용과 검증 결과는 따로 판단한다. 누락된 영향 영역은 해당 Gate에서 보강한다.
 
-[컨텍스트 예시](../assets/templates/system-context.mmd), [계약 시퀀스 예시](../assets/templates/interface-sequence.mmd), [검증 관계도 예시](../assets/templates/verification-map.mmd)
+[컨텍스트 예시](../assets/templates/02-architecture/system-context.mmd), [계약 시퀀스 예시](../assets/templates/03-detailed-design/diagrams/interface-sequence.mmd), [검증 관계도 예시](../assets/templates/03-detailed-design/diagrams/verification-map.mmd)

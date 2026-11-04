@@ -5,5 +5,5 @@
 - 기대 결과, AI의 필요성, 규칙·검색·모델의 역할과 기준선을 정한다.
 - 호출·데이터·권한, 쓰기 전 승인, 실패·근거 부족 시 대체 경로를 그린다. 검색 출처·필터·표시·보존을 정한다.
 - 평가 데이터·버전·반복 조건·근거를 기록한다. 필요한 품질·안전·비용·지연 기준은 사용자와 합의한다.
-- **산출물** `designs/D001-*.md`, [작성 틀](../../assets/templates/ai-design.md), [그림 예시](../../assets/templates/agent-flow.mmd). [그림 규칙](../diagram-policy.md)을 따른다.
+- **산출물** `designs/D001-*.md`, [작성 틀](../../assets/templates/03-detailed-design/ai-design.md), [그림 예시](../../assets/templates/03-detailed-design/diagrams/agent-flow.mmd). [그림 규칙](../diagram-policy.md)을 따른다.
 - **완료** 정상·차단·대체 경로가 명세와 일치하고 평가를 재현할 수 있다.

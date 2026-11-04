@@ -5,5 +5,5 @@
 - 공개 동작, 상태 소유자, 책임과 의존성을 정한다.
 - 입력·사건, 전후 상태, 외부 효과, 오류·중복·동시 수정·복구를 구분한다.
 - 관계 변경은 관계도, 상태 변경은 전이도, 복잡한 분기는 결정표로 남긴다.
-- **산출물** `designs/D001-*.md`, [작성 틀](../../assets/templates/component-design.md), [그림 예시](../../assets/templates/component-state.mmd). [그림 규칙](../diagram-policy.md)을 따른다.
+- **산출물** `designs/D001-*.md`, [작성 틀](../../assets/templates/03-detailed-design/component-design.md), [그림 예시](../../assets/templates/03-detailed-design/diagrams/component-state.mmd). [그림 규칙](../diagram-policy.md)을 따른다.
 - **완료** 변경 책임과 상태가 그림과 일치하고, 상태·불변조건·오류를 검사할 수 있다.

@@ -6,7 +6,7 @@
 - 정상 입출력과 오류, 타임아웃·재시도·중복·순서·부작용을 정한다. 미결 호환성은 먼저 확인한다.
 - 혼합 버전, 전환, 중단·복구 조건을 기록한다. 정상과 관련 실패는 [그림](../diagram-policy.md)에 연결한다.
 - 정형 계약을 갱신하고 제공자·호출자, 호환성, 관련 오류·중복 검사를 정의한다. 상태·복구는 03-C·G와 맞춘다.
-- **산출물** `designs/D001-*.md`의 [인터페이스 명세](../../assets/templates/interface-design.md), [시퀀스 예시](../../assets/templates/interface-sequence.mmd), 정형 계약과 검사 ID. [저장 경로](../artifact-layout.md)를 따른다.
+- **산출물** `designs/D001-*.md`의 [인터페이스 명세](../../assets/templates/03-detailed-design/interface-design.md), [시퀀스 예시](../../assets/templates/03-detailed-design/diagrams/interface-sequence.mmd), 정형 계약과 검사 ID. [저장 경로](../artifact-layout.md)를 따른다.
 - **완료** 영향받는 호출자, 계약, 정상·실패 흐름, 호환성 및 검사 근거가 일치한다.
 
 ## 변경 유형별 판단
