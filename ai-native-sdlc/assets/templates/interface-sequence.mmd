@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant Consumer as 호출자
+    participant Provider as 제공자
+    participant Dependency as 의존 구성요소
+    Consumer->>Provider: 계약에 따른 요청
+    Provider->>Dependency: 내부 처리 요청
+    alt 처리 성공
+        Dependency-->>Provider: 처리 결과
+        Provider-->>Consumer: 계약에 따른 정상 응답
+    else 처리 실패
+        Dependency-->>Provider: 실패 원인
+        Provider-->>Consumer: 계약에 따른 오류 응답
+    end

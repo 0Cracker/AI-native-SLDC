@@ -1,0 +1,9 @@
+erDiagram
+    ENTITY_A ||--o{ ENTITY_B : relates_to
+    ENTITY_A {
+        string entity_a_id PK
+    }
+    ENTITY_B {
+        string entity_b_id PK
+        string entity_a_id FK
+    }
