@@ -1,0 +1,23 @@
+# Feature 관계 지도
+
+- Feature ID / 제목 / 현재 단계 / `intake.md` 링크
+
+| 산출물 ID와 링크 | 상위 근거 ID와 링크 | 후속 산출물 ID와 링크 |
+|---|---|---|
+
+| Increment ID | 사용자 결과 | 핵심 계약과 의존성 | 인수 조건 |
+|---|---|---|---|
+
+| Increment | 단계·영역 | Required / Referenced / N/A / Waived | 이유와 상세 명세 | 검증 ID |
+|---|---|---|---|---|
+
+| 단계·대상 | 통과·실패·차단·승인된 예외 | 근거와 적용 범위 | 남은 조건 또는 다음 단계 |
+|---|---|---|---|
+| G0 Feature | | | |
+| G1 Feature | | | |
+| G2 Feature | | | |
+| G3 현재 Increment | | | |
+
+G3는 Increment ID별로 행을 추가하고 이전 판정과 적용 리비전 또는 근거 버전을 보존한다.
+
+작업 계획과 G4는 `tasks.md`, G5 증거와 후속 검증은 `verification.md`로 연결한다.

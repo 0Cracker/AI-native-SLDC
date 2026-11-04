@@ -1,0 +1,7 @@
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Loading: 조회 요청
+    Loading --> Ready: 결과 수신
+    Loading --> Failed: 조회 실패
+    Failed --> Loading: 다시 시도
+    Ready --> Idle: 종료
