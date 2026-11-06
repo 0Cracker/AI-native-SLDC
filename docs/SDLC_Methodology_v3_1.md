@@ -119,17 +119,16 @@ flowchart TB
       MORETASK -->|있음| TASK
     end
 
-    MORETASK -->|없음| IV[06a Increment 통합 검증과 사용자 시나리오 확인]
+    MORETASK -->|없음| IV[06 Increment 통합과 사용자 시나리오 확인]
     IV --> IG{Increment 수락?}
     IG -->|결함| TRIAGE
     IG -->|수락| MOREINC{다음 Increment?}
     MOREINC -->|있음| DETAIL
   end
 
-  MOREINC -->|없음| VERIFY[06b Feature 독립 검증, 전체 AC와 NFR, 회귀, Convergence]
-  VERIFY --> G6{G6 Feature 수락?}
-  G6 -->|결함| TRIAGE
-  G6 -->|수락| ACCEPT([Feature Accepted, 배포와 구분])
+  MOREINC -->|없음| VERIFY{06 변경 전체 검증 기준 충족?}
+  VERIFY -->|결함| TRIAGE
+  VERIFY -->|충족| ACCEPT([Feature 검증 완료, 배포와 구분])
   ACCEPT --> RELEASE{배포 대상?}
   RELEASE -->|아님| HANDOFF([검증 증거와 잔여 위험 인계])
   RELEASE -->|대상| READY[07 배포 전 준비: 권한, Artifact, Config, Migration, 복구, 관측]
@@ -165,7 +164,7 @@ flowchart TB
   POLICY -.-> READY
 ```
 
-**실제 운영 순서:** 모든 요청은 00의 공통 Intake에서 범위, 위험, 성공 기준과 권한을 확인한 뒤 경로를 선택한다. Feature의 목표와 주요 경계는 먼저 맞추고, 03~06a는 사용자 결과 중심 Increment별로 반복한다. Feature 전체 수락은 06b에서 판단한다. 02는 기존 구조를 참조할 수 있으며 새 아키텍처 문서를 일괄 생성하지 않는다. 작은 버그도 필요한 회귀 증거는 유지한다. 긴급성은 위험 등급을 낮추는 근거가 아니다.
+**실제 운영 순서:** 모든 요청은 00의 공통 Intake에서 범위, 위험, 성공 기준과 권한을 확인한 뒤 경로를 선택한다. Feature의 목표와 주요 경계는 먼저 맞추고, 03~06의 관련 작업을 사용자 결과 중심 Increment별로 반복한다. 변경 전체의 인수 조건과 품질 기준도 06에서 확인한다. 02는 기존 구조를 참조할 수 있으며 새 아키텍처 문서를 일괄 생성하지 않는다. 작은 버그도 필요한 회귀 증거는 유지한다. 긴급성은 위험 등급을 낮추는 근거가 아니다.
 
 **상태 구분:** `Feature Accepted`는 요구 충족, `Released`는 배포 후 정상 확인, `Outcome Observed`는 실제 사용자 결과 관측이다. 서로 자동 대체하지 않는다. 이 그림은 정책의 논리 흐름이며 실제 자동 실행이나 권한 강제를 보장하지 않는다.
 
@@ -210,6 +209,8 @@ flowchart TB
 
 ## 4. 00 — Intake, Framing, Risk Classification
 
+G0는 이번 변경의 문제와 범위, G1은 인수할 동작, G2는 구조와 시스템 검증을 다룬다. 신규 프로젝트의 첫 출시와 기존 프로젝트의 개별 변경에 같은 기준을 적용한다. 필요한 단계만 선택하고 유효한 기존 근거를 재사용한다. 실제 적용은 [단계 선택 기준](../sdlc/references/lifecycle.md)과 [산출물 규칙](../sdlc/references/artifact-layout.md#초기-기록과-명세)을 따른다.
+
 **입력:** 사용자 요청, 이슈, 사고, 변경 제안, 기존 프로젝트 문서.
 
 ### 4.1 순서
@@ -217,13 +218,13 @@ flowchart TB
 1. [M] 요청 식별자, 종류(New Feature / Bug / Hotfix / Refactor / Spike / Migration / Operations), 소유자 기록.
 2. [M] 비즈니스 문제, 사용자, 성공 결과, 현재 문제의 재현 또는 증거 정의.
 3. [M] In/Out of Scope, 제약, 금지 행동, 기존 시스템 영향 식별.
-4. [M] Epic → Feature → User Story / Increment 후보 작성.
+4. [C] 범위를 나눠야 할 때 Feature나 Increment 후보를 정한다.
 5. [M] 데이터 민감도, 금액 / 보안 / 안전 영향, 규모, 불확실성, 가역성, 외부 연동을 평가해 위험 등급 지정.
 6. [C] 기술적 불확실성이나 비용 상한이 중요하면 Time-boxed Spike, PoC, Benchmark 수행. Spike 결과를 프로덕션 코드로 무검증 승격하지 않는다.
 7. [O] 경쟁 서비스, 사용자 리서치, 수익/비용 타당성 조사.
 
-**출력:** Intent Brief, Scope, Feature List, Risk Classification, Open Questions.
-**G0:** 사용자 가치와 검증 대상, 범위, 첫 Feature, 위험 등급이 이해 가능한가?
+**산출물** 기존 요청 정본 또는 변경별 `intake.md`에 목표, 포함 범위와 제외 범위, 착수 위험과 미결을 기록한다.
+**G0** 이번에 해결할 문제와 착수 범위가 명확한가?
 
 ### 4.2 위험 등급 예시, 제안 정책
 
@@ -260,12 +261,12 @@ flowchart TB
 - Golden Data의 버전 / 출처 / 의미 / 엣지케이스 기록.
 - 아직 구체적인 테스트 환경이나 코드가 결정되지 않았다면 `test_intent`, `oracle_source`, `pass_criteria` 수준으로 기록.
 
-**산출물:** `spec.md`, `acceptance.md` 또는 `test-plan.md`의 Acceptance 섹션, 용어집, Trace Matrix 초안.
+**산출물** 기존 명세나 이슈에 기대 동작과 인수 조건을 연결한다. 분리할 때는 변경별 `requirements/R001-*.md`에 기록한다.
 **G1:** 모든 핵심 FR에 관찰 가능한 결과와 검증 기준이 있는가? 중요한 미확정 값은 승인된 TBD로 구분되어 있는가? 모호하거나 반증 불가능한 요구사항은 없는가?
 
 ## 6. 02 — Architecture Impact Review + System Test Design
 
-01 이후, 02 진입 전에 변경 영향 기반 Design Selection을 먼저 수행한다. 03의 상세 분석에서 영향이 달라지면 갱신한다. 기존 구조가 유효하면 참조와 영향 확인으로 02를 만족한다. 구조나 기술 위험이 바뀔 때만 Architecture/ADR을 보강한다. 기술 제약 출발 경로도 최종 요구와 인수 기준을 확인한 뒤 정상 Gate로 합류한다.
+관련 요구와 인수 기준을 참조하고, 이번 변경이 시스템 경계, 책임, 의존성이나 주요 품질 위험에 영향을 줄 때 02를 적용한다. 기존 구조에서 세부 계약만 정하면 03을 선택한다. 상세 분석에서 구조 영향이 드러나면 02를 추가한다.
 
 **입력:** 승인된 Requirements, 기존 아키텍처, NFR과 제약. **핵심 질문:** 어떤 구조가 이 요구를 만족시키는가?
 
@@ -292,7 +293,7 @@ flowchart TB
 - **구현 전 가능:** 무엇을 시험할지, 어떤 결과여야 할지, 어떻게 관측할지 명세.
 - **실제 시스템 필요:** 실행 가능한 전체 E2E 스크립트, 실제 부하 수치, 환경 특유의 실패 결과 검증.
 
-**산출물:** `architecture.md`, `decisions/ADR-*.md`, System Test Specification, Environment Requirements.
+**산출물** 변경별 `architecture/A001-*.md` 또는 기존 구조 정본에 결정과 시스템 검증을 연결한다. 공통 아키텍처와 중요한 ADR은 공통 문서 루트에서 관리한다.
 **G2:** 주요 경계와 책임, 기술 위험, 시스템 검증 방법이 명확한가? 거대한 설계 미확정 상태에서 코딩으로 넘어가지 않는가?
 
 ## 7. 03 — Design Selection Policy + Detailed Design
@@ -508,11 +509,11 @@ done_when: ["승인 테스트 통과", "계약 검사 통과", "리뷰 통과"]
 
 **G5:** Task별 승인 테스트, 형검사/린트, 관련 계약 및 회귀 검증이 통과했는가? 테스트 조작, 경로 이탈, 명세 미반영이 없는가?
 
-## 10. 06 — Independent Verification, Acceptance, Convergence
+## 10. 06 검증 및 통합
 
 ### 10.1 검증 수행 순서
 
-`06a`는 각 Increment의 통합과 사용자 시나리오를 확인한다. 수락 후 다음 Increment가 있으면 03으로 돌아간다. `06b`는 모든 대상 Increment의 완료 후 Feature 전체의 AC/NFR, 경계 간 회귀와 독립 검증을 수행한다. 05에서 가능한 통합 검사는 계속 실행하며 최종 단계까지 미루지 않는다.
+06에서 필요한 Increment 통합과 사용자 시나리오를 확인한다. 다음 Increment가 있으면 필요한 설계부터 진행한다. 변경 전체를 확인할 때는 관련 인수 조건, 품질 요구, 경계 간 회귀와 적용되는 독립 검증을 수행한다. 05에서 가능한 통합 검사도 실행한다.
 
 새 코드 결함은 재현, 기존 테스트 확인, 필요한 회귀 실패 추가 후 수정한다. 결함과 변경은 요구/Oracle 의미, 구조, 설계/계약, 계획, 코드, 테스트, 환경/설정/이행으로 분류해 가장 가까운 책임 지점으로 되돌린다. 상위 기준이 달라지면 영향받는 하위 Gate와 증거를 재확인한다.
 
@@ -527,13 +528,13 @@ done_when: ["승인 테스트 통과", "계약 검사 통과", "리뷰 통과"]
 9. [M] 결함을 `requirements`, `design`, `contract`, `test`, `implementation`, `environment`로 분류해 해당 단계로 회귀.
 10. [M] 잔여 위험, Waiver, 배포 제약, 검증 증거를 승인자에게 보고.
 
-### 10.2 Gate G6의 결정
+### 10.2 검증 결과 판정
 
 - **Pass:** 승인된 Acceptance, 필요한 Contract/Integration/System, 관련 NFR과 안전 기준 충족.
 - **Fail:** 관련 단계로 회귀하고, 수정이 끝난 뒤 영향 범위 회귀 실행.
 - **Blocked:** 환경/외부 시스템/접근 문제로 검증 불가. 검증 실패를 성공으로 취급하지 않음.
 - **Waived:** 정당화 및 책임자 승인, 잔여 위험, 추적 ID, 만료 조건 기록.
-- `Converged`가 나와도 G6 통과는 별도 판정.
+- 명세와 구현의 일치 여부와 함께 적용되는 인수 및 품질 기준을 확인해 06 결과를 판정한다.
 
 ## 11. 07 — Release, Deployment, Transition
 
@@ -572,7 +573,7 @@ done_when: ["승인 테스트 통과", "계약 검사 통과", "리뷰 통과"]
 | G3 | 관련 Detailed Design, Contract, Test Design이 완성되었나? | Design Manifest / Contracts / Test Specs | 필요한 설계만 보강 |
 | G4 | Task DAG와 소유권, 파일 범위, 독립 테스트 준비가 되었나? | Task Plan / Ownership / Mocks | Plan 조정 |
 | G5 | 작업별 Red-Green-Refactor와 필수 CI가 확인됐나? | Test Logs / Diff / Review | 제품 코드 또는 승인 테스트 수정 |
-| G6 | 사용자 가치와 시스템 품질을 독립적으로 검증했나? | Verification / Trace / Acceptance | 결함 유형에 따라 01~05 복귀 |
+| 06 검증 및 통합 | 적용되는 통합, 인수 조건, 품질, 회귀, 독립 검증 기준을 충족했나? | Verification / Trace | 결함 유형에 따라 01~05 복귀 |
 | G7 | 안전한 배포, 복구, 모니터링이 준비됐나? | Release Record / Smoke / Rollback | 배포 중단/롤백 |
 | G8 | 운영 피드백을 다음 결정에 반영했나? | Metrics / Incident / Next Intake | 관측/분석 보강 |
 
@@ -614,7 +615,7 @@ done_when: ["승인 테스트 통과", "계약 검사 통과", "리뷰 통과"]
 
 ## 15. 실행 경로 선택 (Routing Policy)
 
-모든 경로 앞에 공통 Intake가 있다. 축약은 기존 근거 재사용과 기록 깊이 조정이며, 위험에 필요한 인수 기준과 검증을 없애는 면제가 아니다. 표의 일반 경로도 03~06a를 Increment별로 반복한다.
+모든 경로 앞에 공통 Intake가 있다. 축약은 기존 근거 재사용과 기록 깊이 조정이며, 위험에 필요한 인수 기준과 검증을 없애는 면제가 아니다. 표의 일반 경로도 03~06의 관련 작업을 Increment별로 반복한다.
 
 | Intake 유형 | 기본 경로 | 필수 예외/주의 |
 |---|---|---|
@@ -671,7 +672,10 @@ project/
 │   └── decisions/ADR-*.md
 ├── specs/
 │   └── F003-roas-analysis/
-│       ├── spec.md                    # FR/NFR/AC, Scope
+│       ├── index.md                   # 변경 기록의 진입점
+│       ├── intake.md                  # 00 요청 범위, 필요시
+│       ├── requirements/              # 01 동작과 인수 조건, 필요시
+│       ├── architecture/              # 02 변경별 구조 결정, 필요시
 │       ├── design.md                  # Design Manifest와 통합 설계
 │       ├── designs/                   # 영향 시 선택적으로 생성
 │       │   ├── data.md
@@ -742,7 +746,7 @@ flowchart TB
   FRONT --> INT
   AGENT --> INT
   INT --> SYS[System + Acceptance + Independent Evals]
-  SYS --> G{G6 통과?}
+  SYS --> G{06 검증 기준 충족?}
   G -->|No| R
   G -->|Yes| DONE[Feature Accepted]
 ```
@@ -799,7 +803,7 @@ flowchart TB
 | 03 | Design의 Data, Interface, Component | Plan의 `data-model.md`, `contracts/` | Design Selection Policy, 각 설계별 Test Spec |
 | 04 | `tasks.md`, 의존성, Optional Tasks | Checklist, Tasks, Analyze | Task DAG, 파일 소유권, 테스트 고정 |
 | 05 | Execute Tasks | Implement, 테스트 우선은 명시적으로 요청 시 | 별도 Test/Implementation Agent, Red-Green-Refactor 기본화 |
-| 06 | Correctness / PBT 등 검증 도구 | Converge | 독립 System / Acceptance / AI Eval, Gate G6 |
+| 06 | Correctness / PBT 등 검증 도구 | Converge | 통합과 시스템 검사, 인수 조건, 적용되는 독립 검증 |
 | 07 | 프로젝트 CI / 배포 도구 | 프로젝트 CI/CD | 운영 위험에 따른 Release Gate |
 | 08 | 프로젝트 운영 정책 | 코어 SDD 밖의 운영 절차 | 운영 관측, Change Feedback, Retirement |
 
@@ -827,9 +831,9 @@ design_manifest:
   security: referenced
   deployment: not_applicable
 gates:
-  G0: {status: pass, evidence: ["spec.md#intent"]}
-  G1: {status: pass, evidence: ["spec.md#acceptance"]}
-  G2: {status: pass, evidence: ["architecture.md"]}
+  G0: {status: pass, evidence: ["intake.md"]}
+  G1: {status: pass, evidence: ["requirements/R001-roas.md"]}
+  G2: {status: pass, evidence: ["architecture/A001-reporting.md"]}
   G3: {status: pass, evidence: ["design.md", "tests/test-plan.md"]}
   G4: {status: pass, evidence: ["tasks.md"]}
   G5: {status: in_progress, evidence: []}
@@ -935,12 +939,12 @@ strategy: "Agent를 실제 연결하고 Tool을 제어된 Stub으로 먼저 검�
 
 ## Appendix A. 단계별 Activity Catalog, 기존 172개 세부 활동 통합
 
-### 00 문제와 프로젝트 정의 (Problem & Project Framing)
+### 00 문제와 변경 범위 정의 (Intake)
 
-**산출물:** `product.md, scope.md, constitution.md / steering.md`
+**산출물** 요청 정본 또는 변경별 `intake.md`
 
 - [M] 문제, 사용자, 기대 가치, 성공 지표 정의
-- [M] 프로젝트 범위, In/Out of Scope
+- [M] 이번 변경의 포함 범위와 제외 범위
 - [M] 기존 코드 및 시스템 맥락 파악
 - [C] 이해관계자, 사용자 조사, 인터뷰
 - [C] 현재 시스템 감사, 기술부채, 영향 분석 (Brownfield)
@@ -948,15 +952,15 @@ strategy: "Agent를 실제 연결하고 Tool을 제어된 Stub으로 먼저 검�
 - [O] 시장, 경쟁사, 대안 분석
 - [O] 경제성 및 기술 타당성 평가
 - [C] 불확실한 기술 검증 Spike/PoC
-- [M] 기능 분할: Epic → Feature → Increment
+- [C] 범위를 나눠야 할 때 Feature나 Increment 후보 결정
 - [M] 위험 수준 분류 및 설계 강도 결정
-- [M] 프로젝트 공통 원칙 Constitution / Steering
+- [C] 기존 프로젝트 공통 원칙 확인. 공통 원칙을 새로 정하거나 바꾸면 해당 정본에 기록
 
-**종료 게이트:** G0: 개발할 문제, 범위, 위험, 첫 Feature가 명확한가?
+**G0** 이번 변경에서 해결할 문제, 범위, 착수 위험이 명확한가?
 
 ### 01 요구사항 공학 (Requirements Engineering)
 
-**산출물:** `requirements.md, acceptance.md, glossary.md`
+**산출물** 기존 요구사항 정본 또는 변경별 `requirements/R001-*.md`
 
 - [M] Feature 목표, 사용자 가치, 시나리오 정의
 - [M] 이해관계자, Actors, 시스템 경계
@@ -980,7 +984,7 @@ strategy: "Agent를 실제 연결하고 Tool을 제어된 Stub으로 먼저 검�
 
 ### 02 아키텍처와 기술 타당성 (Architecture & Feasibility)
 
-**산출물:** `architecture.md, ADRs, C4 diagrams`
+**산출물** 기존 구조 정본 또는 변경별 `architecture/A001-*.md`, 필요한 ADR과 그림
 
 - [M] Architecture Drivers (핵심 품질 목표/제약)
 - [M] 현재 아키텍처 분석, 변경 영향 파악
@@ -1132,7 +1136,7 @@ strategy: "Agent를 실제 연결하고 Tool을 제어된 Stub으로 먼저 검�
 
 **종료 게이트:** G5: 작업 완료 조건을 만족하고 변경을 통합할 준비가 되었나?
 
-### 06 검증과 인수 (Verification & Acceptance)
+### 06 검증 및 통합
 
 **산출물:** `verification.md, test reports, approval`
 
@@ -1153,7 +1157,7 @@ strategy: "Agent를 실제 연결하고 Tool을 제어된 Stub으로 먼저 검�
 - [O] Mutation Testing / Chaos Testing
 - [O] Human-in-the-loop 리뷰/사용성 시험
 
-**종료 게이트:** G6: 사용자 요구사항과 품질 목표가 외부 기준으로 검증되었나?
+**종료 조건** 적용되는 통합, 인수 조건, 품질, 회귀, 독립 검증의 결과와 근거를 연결한다.
 
 ### 07 릴리스와 배포 (Release & Deployment)
 
