@@ -72,17 +72,16 @@ flowchart TB
       MORETASK -->|있음| TASK
     end
 
-    MORETASK -->|없음| IV[06a Increment 통합 검증과 사용자 시나리오 확인]
+    MORETASK -->|없음| IV[06 Increment 통합과 사용자 시나리오 확인]
     IV --> IG{Increment 수락?}
     IG -->|결함| TRIAGE
     IG -->|수락| MOREINC{다음 Increment?}
     MOREINC -->|있음| DETAIL
   end
 
-  MOREINC -->|없음| VERIFY[06b Feature 독립 검증, 전체 AC와 NFR, 회귀, Convergence]
-  VERIFY --> G6{G6 Feature 수락?}
-  G6 -->|결함| TRIAGE
-  G6 -->|수락| ACCEPT([Feature Accepted, 배포와 구분])
+  MOREINC -->|없음| VERIFY{06 변경 전체 검증 기준 충족?}
+  VERIFY -->|결함| TRIAGE
+  VERIFY -->|충족| ACCEPT([Feature 검증 완료, 배포와 구분])
   ACCEPT --> RELEASE{배포 대상?}
   RELEASE -->|아님| HANDOFF([검증 증거와 잔여 위험 인계])
   RELEASE -->|대상| READY[07 배포 전 준비: 권한, Artifact, Config, Migration, 복구, 관측]
