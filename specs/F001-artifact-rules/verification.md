@@ -4,7 +4,7 @@
 
 | 검사 | 명령 또는 방법 | 결과 |
 |---|---|---|
-| 스킬 형식 | `python3 /mnt/c/Users/gogos/.codex/skills/.system/skill-creator/scripts/quick_validate.py ai-native-sdlc` | exit 0, Skill is valid! |
+| 스킬 형식 | 스킬 형식 검사 (당시 경로) | exit 0, Skill is valid! |
 | 패치 공백 오류 | `git diff --check` | exit 0, 오류 없음 |
 | 문서 연결 | Python으로 변경 문서 11개의 로컬 링크와 앵커 51개 확인 | exit 0, 오류 없음 |
 | 지침 일관성 | 필수 경로, 간소화 예시, 재개 지침과 템플릿을 대조 | 충돌 문구 정리, 템플릿 32줄에서 10줄, 표 5개에서 2개 |

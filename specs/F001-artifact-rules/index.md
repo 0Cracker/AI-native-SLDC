@@ -6,7 +6,7 @@
 
 | 단계 또는 영역 | 선택 또는 생략, 이유 | 현재 판정 | 정본과 근거 |
 |---|---|---|---|
-| 05 문서 수정 | 선택, 확정된 규칙 반영 | 통과 | [공통 규칙](../../ai-native-sdlc/SKILL.md), [산출물 규칙](../../ai-native-sdlc/references/artifact-layout.md), [진입점 템플릿](../../ai-native-sdlc/assets/templates/index.md) |
+| 05 문서 수정 | 선택, 확정된 규칙 반영 | 통과 | [공통 규칙](../../sdlc/SKILL.md), [산출물 규칙](../../sdlc/references/artifact-layout.md), [진입점 템플릿](../../sdlc/assets/templates/index.md) |
 | 00~04, 06~08 | 생략, 요청과 규칙이 확정된 문서 변경이며 제품 개발과 배포 없음 | 해당 없음 | [사용 안내](../../README.md), [검증 범위](verification.md) |
 
 | 검증 대상과 환경 | 결과 | 실행 증거 |

@@ -4,7 +4,7 @@
 
 | 검사 | 결과 |
 |---|---|
-| `quick_validate.py ai-native-sdlc` | exit 0, Skill is valid! |
+| 스킬 형식 검사 (당시 경로) | exit 0, Skill is valid! |
 | `git diff --check` | exit 0, 오류 없음 |
 | 변경 문서의 로컬 링크와 앵커 확인 | exit 0, 누적 수정 문서 15개에서 75개 확인 |
 | 생성, 종료, 재개와 보존 규칙 대조 | 같은 목표 재사용, 완료 이력 보존, 필수 검사 차단과 완료 구분 확인 |
