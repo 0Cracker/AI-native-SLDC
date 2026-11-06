@@ -1,0 +1,32 @@
+flowchart TB
+  INPUT[사용자 요청과 프로젝트 Repository] --> READ[Context Resolver: 정책, 기존 Spec, 코드, Test, Git, 실행 증거]
+  READ --> ROUTER[SKILL.md: 얇은 진입점, 범위와 위험 분류, 실행 경로 선택]
+  ROUTER --> CTRL[Workflow Orchestrator: 단계와 의존성, Gate, 변경 영향, 재개와 중단]
+  SHARED[프로젝트 공통: Constitution, Steering, Architecture, ADR, 용어와 계약] --> READ
+  POLICY[횡단 정책: 권한, 위험, Oracle, 독립성, 예외, 변경 전파] --> CTRL
+  STATE[상태 인덱스: Feature, Increment, Task, Gate와 Evidence 참조] <-->|증거로 검증하여 복원| CTRL
+
+  subgraph GUIDANCE[필요할 때 선택하여 읽는 지침]
+    LIFE[Lifecycle: 00~08, 경로와 전환 조건]
+    STEP[Step Playbooks: 목적, 입력, 순서, 선택 조건, 출력, 종료 증거]
+    OPTIONAL[Activity Playbooks: Data, Interface, UX, AI, Security, Ops]
+    TEMPLATE[Artifact Contracts와 Templates: 필수 필드, ID, 연결과 예시]
+    LIFE --> STEP --> OPTIONAL
+    STEP --> TEMPLATE
+    OPTIONAL --> TEMPLATE
+  end
+  CTRL --> LIFE
+  CTRL --> EXEC[Execution Adapter: 현재 도구와 권한 내에서 파일, Test, CI, Reviewer 실행]
+  GUIDANCE --> EXEC
+  EXEC --> ART[Feature 산출물: Spec, Design Manifest, Contracts, Tasks, Tests, Verification]
+  EXEC --> EVIDENCE[실행 증거: Diff, Test Log, Build, 환경, Revision, Review, 승인]
+  ART --> CHECK[Gate Evaluator: 요구와 산출물, 실제 증거와 잔여 위험 대조]
+  EVIDENCE --> CHECK
+  CHECK -->|Pass, Fail, Blocked, Waived| CTRL
+  CHECK -->|인덱스 갱신| STATE
+  CHECK --> REPORT[현재 단계, 결과물, 검증 상태, 필요한 결정 보고]
+
+  ROLE[역할은 책임 분리: 작성, 구현, 검증, 승인, 별도 Agent는 환경과 위험에 따라]
+  ROLE -.-> EXEC
+  NOTE[설계안: 현재 스킬에 모두 구현되었다는 의미가 아님]
+  NOTE -.-> ROUTER

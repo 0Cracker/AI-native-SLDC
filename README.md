@@ -1,6 +1,6 @@
-# AI-Native SDLC
+# SDLC
 
-`ai-native-sdlc`는 기능 개발, 버그 수정, 리팩터링, 데이터 이행, 배포에 사용하는 스킬입니다. 요청에서 요구사항, 설계, 구현 작업, 검증 결과까지 근거를 연결해 작업을 이어갈 수 있게 돕습니다.
+`sdlc`는 기능 개발, 버그 수정, 리팩터링, 데이터 이행, 배포에 사용하는 스킬입니다. 요청에서 요구사항, 설계, 구현 작업, 검증 결과까지 근거를 연결해 작업을 이어갈 수 있게 돕습니다.
 
 ## 어떻게 진행하나요?
 
@@ -14,9 +14,11 @@
 
 스킬을 선택한 뒤 원하는 변경과 작업 범위를 알려주세요. 설계 검토처럼 일부 단계만 요청할 수도 있습니다.
 
-- [스킬 진입점](ai-native-sdlc/SKILL.md)
-- [단계별 적용 조건과 종료 조건](ai-native-sdlc/references/lifecycle.md)
-- [작업 유형별 진행 예시](ai-native-sdlc/references/compact-routes.md)
-- [프로젝트 산출물 구조](ai-native-sdlc/references/artifact-layout.md)
-- [단계별 템플릿](ai-native-sdlc/assets/templates/)
-- [HTML 보고서 작성 가이드](ai-native-sdlc/references/stage-report.md)
+- [스킬 진입점](sdlc/SKILL.md)
+- [단계별 적용 조건과 종료 조건](sdlc/references/lifecycle.md)
+- [작업 유형별 진행 예시](sdlc/references/compact-routes.md)
+- [프로젝트 산출물 구조](sdlc/references/artifact-layout.md)
+- [단계별 템플릿](sdlc/assets/templates/)
+- [HTML 보고서 작성 가이드](sdlc/references/stage-report.md)
+- [방법론 v3.1](docs/SDLC_Methodology_v3_1.md)
+- [진행 흐름](docs/SDLC_Flow_v3_1.mmd), [스킬 아키텍처 설계](docs/SDLC_Skill_Architecture_v3_1.mmd)
